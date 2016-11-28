@@ -19,7 +19,6 @@ import java.net.URISyntaxException;
  */
 public class Sudoku {
     Sudoku(){
-
         //So fügt ihr eine Klasse zum Ausführen in der Hauptklasse hinzu.
         TestKlasse testKlasse = new TestKlasse();
         GuiCore.createGui("Sudoku");
