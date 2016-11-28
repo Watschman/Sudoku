@@ -1,5 +1,6 @@
 package main.java.com.watschman.sudoku;
 
+import main.java.com.watschman.sudoku.gui.GuiCore;
 import main.java.com.watschman.sudoku.test.TestKlasse;
 import main.java.com.watschman.sudoku.utility.LogHelper;
 
@@ -21,6 +22,7 @@ public class Sudoku {
 
         //So fügt ihr eine Klasse zum Ausführen in der Hauptklasse hinzu.
         TestKlasse testKlasse = new TestKlasse();
+        GuiCore.createGui("Sudoku");
 
     }
 /*
