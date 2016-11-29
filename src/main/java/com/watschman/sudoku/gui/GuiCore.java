@@ -10,7 +10,7 @@ public class GuiCore extends JPanel implements PropertyChangeListener{
         super(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(40, 160, 100, 160));
     }
-    //Algorithmus zum erstellen des Fensters
+    //Algorithmus zum erstellen des Fensters - kleine Änderung
     public static void createGui(String guiName){
         JFrame jFrame = new JFrame(guiName);
         jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
