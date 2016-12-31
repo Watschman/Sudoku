@@ -1,21 +1,21 @@
 package main.java.com.watschman.sudoku.gui;
 
-import main.java.com.watschman.sudoku.utility.LogHelper;
-
 import javax.swing.*;
 import javax.swing.text.NumberFormatter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 
 /**
  * Created by Steve on 04.12.2016.
  */
 public class GuiPanels {
-
+    /* Menu */
+    public static JButton START_GAME_PANEL = new JButton("Start Game");
+    public static JButton QUIT_PANEL = new JButton("Quit");
+    public static JButton OPTION_PANEL = new JButton("Options");
+    /* Game*/
     //First Declaration
-    public static JButton HEADER_PANEL = new JButton("Header");
+    public static JLabel HEADER_PANEL = new JLabel("Header", SwingConstants.CENTER);
     public static JPanel MAIN_PANEL = new JPanel(new GridLayout(3, 3));
     public static JButton BUTTON_PANEL = new JButton("Button");
 
@@ -309,7 +309,7 @@ public class GuiPanels {
 
     GuiPanels(){
         NUMBER_FORMATTER.setValueClass(Integer.class);
-        NUMBER_FORMATTER.setMaximum(1);
+        NUMBER_FORMATTER.setMinimum(1);
         NUMBER_FORMATTER.setMaximum(9);
         NUMBER_FORMATTER.setAllowsInvalid(true);
         NUMBER_FORMATTER.setCommitsOnValidEdit(true);

@@ -5,6 +5,7 @@ import main.java.com.watschman.sudoku.utility.LogHelper;
 public class berechnungsAlgorithmusCore {
     static int[] USER_SOLUTION;
     public berechnungsAlgorithmusCore(){
+
     }
 
     public static void compareSolutions(int[] solutionsToCompare){
