@@ -1,18 +1,18 @@
 package main.java.com.watschman.sudoku.gui;
 
 import main.java.com.watschman.sudoku.berechnungsAlgorithmus.berechnungsAlgorithmusCore;
+import main.java.com.watschman.sudoku.reference.Reference;
 import main.java.com.watschman.sudoku.utility.LogHelper;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class GuiCore extends JPanel implements PropertyChangeListener{
+public class GuiGamePanel extends JPanel implements PropertyChangeListener{
+    static JFrame JFRAME;
     int[] solutions;
-    private GuiCore(){
+    private GuiGamePanel(){
         super(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         new GuiPanels();
@@ -23,12 +23,13 @@ public class GuiCore extends JPanel implements PropertyChangeListener{
         add(GuiPanels.BUTTON_PANEL, BorderLayout.SOUTH);
     }
     //Algorithmus zum erstellen des Fensters
-    public static void createGui(String guiName){
-        JFrame jFrame = new JFrame(guiName);
-        jFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jFrame.add(new GuiCore());
-        jFrame.setVisible(true);
-        jFrame.pack();
+    public static void createNewGui(JFrame jFrame){
+        jFrame.dispose();
+        JFRAME = new JFrame(Reference.PROJECT_NAME);
+        JFRAME.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        JFRAME.add(new GuiGamePanel());
+        JFRAME.setVisible(true);
+        JFRAME.pack();
     }
     private static void createPanelLine(JPanel mainPanel, JPanel panelOne, JPanel panelTwo, JPanel panelThree, boolean vertical){
         if (vertical) {
@@ -127,6 +128,7 @@ public class GuiCore extends JPanel implements PropertyChangeListener{
     public int[] getSolutions(){
         return this.solutions;
     }
+
     private void initializeButton(JButton button){
         button.addActionListener(e -> {
             if (e.getActionCommand().equals("Button")){
