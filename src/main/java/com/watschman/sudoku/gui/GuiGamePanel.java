@@ -44,17 +44,25 @@ public class GuiGamePanel extends JPanel implements PropertyChangeListener{
     }
     private void createPanels(){
         //Field declaration
-        //TestArray for Demonstration Purposes
-        int[] testArray = new int[]{0, 0, 1, 2, 6, 4, 0, 9, 5};
-        assignFieldToPanel(GuiPanels.BLOCK_1_ARRAY, GuiPanels.BLOCK_1_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_2_ARRAY, GuiPanels.BLOCK_2_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_3_ARRAY, GuiPanels.BLOCK_3_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_4_ARRAY, GuiPanels.BLOCK_4_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_5_ARRAY, GuiPanels.BLOCK_5_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_6_ARRAY, GuiPanels.BLOCK_6_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_7_ARRAY, GuiPanels.BLOCK_7_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_8_ARRAY, GuiPanels.BLOCK_8_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_9_ARRAY, GuiPanels.BLOCK_9_ARRAY_TEXT, testArray);
+
+        switch (Reference.LEVEL){
+            case "Level 1":
+                assignFieldToPanel(GuiPanels.ALL_BLOCKS_ARRAY, GuiPanels.ALL_BLOCKS_ARRAY_TEXT, Reference.LEVEL_1_SHOWN);
+                GuiPanels.HEADER_PANEL.setText("Level 1");
+                break;
+            case "Level 2":
+                assignFieldToPanel(GuiPanels.ALL_BLOCKS_ARRAY, GuiPanels.ALL_BLOCKS_ARRAY_TEXT, Reference.LEVEL_2_SHOWN);
+                GuiPanels.HEADER_PANEL.setText("Level 2");
+                break;
+            case "Level 3":
+                assignFieldToPanel(GuiPanels.ALL_BLOCKS_ARRAY, GuiPanels.ALL_BLOCKS_ARRAY_TEXT, Reference.LEVEL_3_SHOWN);
+                GuiPanels.HEADER_PANEL.setText("Level 3");
+                break;
+            default:
+                assignFieldToPanel(GuiPanels.ALL_BLOCKS_ARRAY, GuiPanels.ALL_BLOCKS_ARRAY_TEXT, Reference.LEVEL_1_SHOWN);
+                GuiPanels.HEADER_PANEL.setText("Level 1");
+                break;
+        }
 
         createPanelLine(GuiPanels.TOP_LEFT_TOP_MAIN_PANEL, GuiPanels.BLOCK_1_FRAME_1, GuiPanels.BLOCK_1_FRAME_2, GuiPanels.BLOCK_1_FRAME_3, false);
         createPanelLine(GuiPanels.TOP_LEFT_CENTER_MAIN_PANEL, GuiPanels.BLOCK_1_FRAME_4, GuiPanels.BLOCK_1_FRAME_5, GuiPanels.BLOCK_1_FRAME_6, false);

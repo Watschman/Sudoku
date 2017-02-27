@@ -20,7 +20,7 @@ public class GuiLevel extends JPanel{
         setVisible(true);
     }
     private void sendLevel(String level){
-        Reference.Level = level;
+        Reference.LEVEL = level;
         setVisible(false);
         GuiMenu.goBack(optionPanels);
     }
@@ -35,7 +35,7 @@ public class GuiLevel extends JPanel{
                         case "Level 2":
                             sendLevel("Level 2");
                             break;
-                        case "level 3":
+                        case "Level 3":
                             sendLevel("Level 3");
                             break;
                         default:

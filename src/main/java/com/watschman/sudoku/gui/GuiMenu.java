@@ -1,5 +1,6 @@
 package main.java.com.watschman.sudoku.gui;
 
+import main.java.com.watschman.sudoku.reference.Reference;
 import main.java.com.watschman.sudoku.utility.LogHelper;
 
 import javax.swing.*;
@@ -38,7 +39,7 @@ public class GuiMenu extends JFrame{
                             GuiPanels.OPTION_PANEL.setVisible(false);
                             GuiPanels.QUIT_PANEL.setVisible(false);
                             add(new GuiGamePanel());
-                            setSize(300,300);
+                            setSize(Reference.GAME_WIDTH,Reference.GAME_HEIGHT);
                             break;
                         case "Choose Level":
                             GuiPanels.START_GAME_PANEL.setVisible(false);
