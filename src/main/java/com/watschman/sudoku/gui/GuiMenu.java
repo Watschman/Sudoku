@@ -17,6 +17,13 @@ public class GuiMenu extends JFrame{
         setVisible(true);
         pack();
     }
+    protected static void goBack(JComponent[] toDispose){
+        for (JComponent i : toDispose)
+            i.setVisible(false);
+        GuiPanels.START_GAME_PANEL.setVisible(true);
+        GuiPanels.OPTION_PANEL.setVisible(true);
+        GuiPanels.QUIT_PANEL.setVisible(true);
+    }
     private void sendQuit(){
         LogHelper.info("quitting Game...");
         dispose();
@@ -27,16 +34,21 @@ public class GuiMenu extends JFrame{
                 try {
                     switch (button.getText()){
                         case "Start Game":
-                            add(new GuiGamePanel());
                             GuiPanels.START_GAME_PANEL.setVisible(false);
                             GuiPanels.OPTION_PANEL.setVisible(false);
                             GuiPanels.QUIT_PANEL.setVisible(false);
+                            add(new GuiGamePanel());
                             setSize(300,300);
                             break;
-                        case "Options":
-                            return;
+                        case "Choose Level":
+                            GuiPanels.START_GAME_PANEL.setVisible(false);
+                            GuiPanels.OPTION_PANEL.setVisible(false);
+                            GuiPanels.QUIT_PANEL.setVisible(false);
+                            add(new GuiLevel());
+                            break;
                         case "Quit":
                             sendQuit();
+                            break;
                     }
                 }catch (Exception ex){
                     LogHelper.fatal("Exception during operation " + ex.getMessage());

@@ -9,15 +9,19 @@ import java.text.NumberFormat;
  * Created by Steve on 04.12.2016.
  */
 public class GuiPanels {
+    /* Level */
+    public static JButton LEVEL_1_PANEL = new JButton("Level 1");
+    public static JButton LEVEL_2_PANEL = new JButton("Level 2");
+    public static JButton LEVEL_3_PANEL = new JButton("Level 3");
     /* Menu */
     public static JButton START_GAME_PANEL = new JButton("Start Game");
     public static JButton QUIT_PANEL = new JButton("Quit");
-    public static JButton OPTION_PANEL = new JButton("Options");
+    public static JButton OPTION_PANEL = new JButton("Choose Level");
     /* Game*/
     //First Declaration
     public static JLabel HEADER_PANEL = new JLabel("Header", SwingConstants.CENTER);
     public static JPanel MAIN_PANEL = new JPanel(new GridLayout(3, 3));
-    public static JButton BUTTON_PANEL = new JButton("Vergleiche Loesung");
+    public static JButton BUTTON_PANEL = new JButton("Compare Solutions");
 
     //Second Stage of creating Sudoku Field
     public static JPanel TOP_MAIN_PANEL = new JPanel(new GridLayout(1, 3));

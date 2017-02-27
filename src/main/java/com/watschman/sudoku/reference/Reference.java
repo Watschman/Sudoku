@@ -6,5 +6,6 @@ package main.java.com.watschman.sudoku.reference;
 public class Reference {
     public static final String PROJECT_NAME = "Sudoku";
     public static final String PROJECT_ID = "sudoku";
+    public static String Level = "Level 1";
 
 }

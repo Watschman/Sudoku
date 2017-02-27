@@ -122,7 +122,7 @@ public class GuiGamePanel extends JPanel implements PropertyChangeListener{
 
     private void initializeButton(JButton button){
         button.addActionListener(e -> {
-            if (e.getActionCommand().equals("Vergleiche Loesung")){
+            if (e.getActionCommand().equals("Compare Solutions")){
                 try {
                     setSolutions(GuiPanels.ALL_BLOCKS_ARRAY_TEXT);
                     berechnungsAlgorithmusCore.compareSolutions(getSolutions());
