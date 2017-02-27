@@ -17,7 +17,7 @@ public class GuiPanels {
     //First Declaration
     public static JLabel HEADER_PANEL = new JLabel("Header", SwingConstants.CENTER);
     public static JPanel MAIN_PANEL = new JPanel(new GridLayout(3, 3));
-    public static JButton BUTTON_PANEL = new JButton("Button");
+    public static JButton BUTTON_PANEL = new JButton("Vergleiche Loesung");
 
     //Second Stage of creating Sudoku Field
     public static JPanel TOP_MAIN_PANEL = new JPanel(new GridLayout(1, 3));

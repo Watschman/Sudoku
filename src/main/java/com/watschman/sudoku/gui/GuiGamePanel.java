@@ -10,9 +10,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class GuiGamePanel extends JPanel implements PropertyChangeListener{
-    static JFrame JFRAME;
     int[] solutions;
-    private GuiGamePanel(){
+    public GuiGamePanel(){
         super(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         new GuiPanels();
@@ -21,15 +20,7 @@ public class GuiGamePanel extends JPanel implements PropertyChangeListener{
         add(GuiPanels.HEADER_PANEL, BorderLayout.NORTH);
         add(GuiPanels.MAIN_PANEL, BorderLayout.CENTER);
         add(GuiPanels.BUTTON_PANEL, BorderLayout.SOUTH);
-    }
-    //Algorithmus zum erstellen des Fensters
-    public static void createNewGui(JFrame jFrame){
-        jFrame.dispose();
-        JFRAME = new JFrame(Reference.PROJECT_NAME);
-        JFRAME.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        JFRAME.add(new GuiGamePanel());
-        JFRAME.setVisible(true);
-        JFRAME.pack();
+        setVisible(true);
     }
     private static void createPanelLine(JPanel mainPanel, JPanel panelOne, JPanel panelTwo, JPanel panelThree, boolean vertical){
         if (vertical) {
@@ -131,7 +122,7 @@ public class GuiGamePanel extends JPanel implements PropertyChangeListener{
 
     private void initializeButton(JButton button){
         button.addActionListener(e -> {
-            if (e.getActionCommand().equals("Button")){
+            if (e.getActionCommand().equals("Vergleiche Loesung")){
                 try {
                     setSolutions(GuiPanels.ALL_BLOCKS_ARRAY_TEXT);
                     berechnungsAlgorithmusCore.compareSolutions(getSolutions());

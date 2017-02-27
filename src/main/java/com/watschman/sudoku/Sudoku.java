@@ -17,7 +17,7 @@ public class Sudoku {
     Sudoku(){
         //So fügt ihr eine Klasse zum Ausführen in der Hauptklasse hinzu.
         new TestKlasse();
-        GuiMenu.createGui(Reference.PROJECT_NAME);
+        new GuiMenu(Reference.PROJECT_NAME);
 
     }
 //    public static void main(String[] args)throws IOException, InterruptedException, URISyntaxException{
