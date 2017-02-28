@@ -1,6 +1,6 @@
 package main.java.com.watschman.sudoku.gui;
 
-import main.java.com.watschman.sudoku.berechnungsAlgorithmus.berechnungsAlgorithmusCore;
+import main.java.com.watschman.sudoku.berechnungsAlgorithmus.BerechnungsAlgorithmusCore;
 import main.java.com.watschman.sudoku.reference.Reference;
 import main.java.com.watschman.sudoku.utility.LogHelper;
 
@@ -35,8 +35,10 @@ public class GuiGamePanel extends JPanel implements PropertyChangeListener{
     }
     private void assignFieldToPanel(JPanel[] panelArray, JFormattedTextField[] componentArray, int[] shownSolutions){
         for (int i = 0; i < panelArray.length; i++){
-            if (shownSolutions[i] != 0)
+            if (shownSolutions[i] != 0) {
                 componentArray[i].setValue(shownSolutions[i]);
+                componentArray[i].setEditable(false);
+            }
             componentArray[i].setColumns(2);
             componentArray[i].addPropertyChangeListener("value", this);
             panelArray[i].add(componentArray[i]);
@@ -133,7 +135,7 @@ public class GuiGamePanel extends JPanel implements PropertyChangeListener{
             if (e.getActionCommand().equals("Compare Solutions")){
                 try {
                     setSolutions(GuiPanels.ALL_BLOCKS_ARRAY_TEXT);
-                    berechnungsAlgorithmusCore.compareSolutions(getSolutions());
+                    BerechnungsAlgorithmusCore.compareSolutions(getSolutions(), Reference.LEVEL);
                 }catch (Exception ex){
                     LogHelper.fatal("Exception during operation " + ex.getMessage());
                     ex.printStackTrace();

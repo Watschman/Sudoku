@@ -9,6 +9,7 @@ import java.awt.*;
 public class GuiLevel extends JPanel{
     JComponent[] optionPanels = new JComponent[]{GuiPanels.LEVEL_1_PANEL, GuiPanels.LEVEL_2_PANEL, GuiPanels.LEVEL_3_PANEL};
     public GuiLevel(){
+        super(new GridLayout(3, 1));
         add(GuiPanels.LEVEL_1_PANEL, BorderLayout.NORTH);
         add(GuiPanels.LEVEL_2_PANEL, BorderLayout.CENTER);
         add(GuiPanels.LEVEL_3_PANEL, BorderLayout.SOUTH);

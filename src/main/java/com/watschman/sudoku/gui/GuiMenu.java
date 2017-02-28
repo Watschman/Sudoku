@@ -8,6 +8,7 @@ import java.awt.*;
 
 public class GuiMenu extends JFrame{
     public GuiMenu(String name){
+        super(name);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         add(GuiPanels.START_GAME_PANEL, BorderLayout.NORTH);
         add(GuiPanels.OPTION_PANEL, BorderLayout.CENTER);
