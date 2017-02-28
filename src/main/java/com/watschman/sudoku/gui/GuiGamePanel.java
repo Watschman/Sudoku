@@ -1,6 +1,6 @@
 package main.java.com.watschman.sudoku.gui;
 
-import main.java.com.watschman.sudoku.berechnungsAlgorithmus.berechnungsAlgorithmusCore;
+import main.java.com.watschman.sudoku.berechnungsAlgorithmus.BerechnungsAlgorithmusCore;
 import main.java.com.watschman.sudoku.reference.Reference;
 import main.java.com.watschman.sudoku.utility.LogHelper;
 
@@ -10,9 +10,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class GuiGamePanel extends JPanel implements PropertyChangeListener{
-    static JFrame JFRAME;
     int[] solutions;
-    private GuiGamePanel(){
+    public GuiGamePanel(){
         super(new BorderLayout());
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         new GuiPanels();
@@ -21,15 +20,7 @@ public class GuiGamePanel extends JPanel implements PropertyChangeListener{
         add(GuiPanels.HEADER_PANEL, BorderLayout.NORTH);
         add(GuiPanels.MAIN_PANEL, BorderLayout.CENTER);
         add(GuiPanels.BUTTON_PANEL, BorderLayout.SOUTH);
-    }
-    //Algorithmus zum erstellen des Fensters
-    public static void createNewGui(JFrame jFrame){
-        jFrame.dispose();
-        JFRAME = new JFrame(Reference.PROJECT_NAME);
-        JFRAME.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        JFRAME.add(new GuiGamePanel());
-        JFRAME.setVisible(true);
-        JFRAME.pack();
+        setVisible(true);
     }
     private static void createPanelLine(JPanel mainPanel, JPanel panelOne, JPanel panelTwo, JPanel panelThree, boolean vertical){
         if (vertical) {
@@ -44,8 +35,10 @@ public class GuiGamePanel extends JPanel implements PropertyChangeListener{
     }
     private void assignFieldToPanel(JPanel[] panelArray, JFormattedTextField[] componentArray, int[] shownSolutions){
         for (int i = 0; i < panelArray.length; i++){
-            if (shownSolutions[i] != 0)
+            if (shownSolutions[i] != 0) {
                 componentArray[i].setValue(shownSolutions[i]);
+                componentArray[i].setEditable(false);
+            }
             componentArray[i].setColumns(2);
             componentArray[i].addPropertyChangeListener("value", this);
             panelArray[i].add(componentArray[i]);
@@ -53,17 +46,25 @@ public class GuiGamePanel extends JPanel implements PropertyChangeListener{
     }
     private void createPanels(){
         //Field declaration
-        //TestArray for Demonstration Purposes
-        int[] testArray = new int[]{0, 0, 1, 2, 6, 4, 0, 9, 5};
-        assignFieldToPanel(GuiPanels.BLOCK_1_ARRAY, GuiPanels.BLOCK_1_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_2_ARRAY, GuiPanels.BLOCK_2_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_3_ARRAY, GuiPanels.BLOCK_3_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_4_ARRAY, GuiPanels.BLOCK_4_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_5_ARRAY, GuiPanels.BLOCK_5_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_6_ARRAY, GuiPanels.BLOCK_6_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_7_ARRAY, GuiPanels.BLOCK_7_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_8_ARRAY, GuiPanels.BLOCK_8_ARRAY_TEXT, testArray);
-        assignFieldToPanel(GuiPanels.BLOCK_9_ARRAY, GuiPanels.BLOCK_9_ARRAY_TEXT, testArray);
+
+        switch (Reference.LEVEL){
+            case "Level 1":
+                assignFieldToPanel(GuiPanels.ALL_BLOCKS_ARRAY, GuiPanels.ALL_BLOCKS_ARRAY_TEXT, Reference.LEVEL_1_SHOWN);
+                GuiPanels.HEADER_PANEL.setText("Level 1");
+                break;
+            case "Level 2":
+                assignFieldToPanel(GuiPanels.ALL_BLOCKS_ARRAY, GuiPanels.ALL_BLOCKS_ARRAY_TEXT, Reference.LEVEL_2_SHOWN);
+                GuiPanels.HEADER_PANEL.setText("Level 2");
+                break;
+            case "Level 3":
+                assignFieldToPanel(GuiPanels.ALL_BLOCKS_ARRAY, GuiPanels.ALL_BLOCKS_ARRAY_TEXT, Reference.LEVEL_3_SHOWN);
+                GuiPanels.HEADER_PANEL.setText("Level 3");
+                break;
+            default:
+                assignFieldToPanel(GuiPanels.ALL_BLOCKS_ARRAY, GuiPanels.ALL_BLOCKS_ARRAY_TEXT, Reference.LEVEL_1_SHOWN);
+                GuiPanels.HEADER_PANEL.setText("Level 1");
+                break;
+        }
 
         createPanelLine(GuiPanels.TOP_LEFT_TOP_MAIN_PANEL, GuiPanels.BLOCK_1_FRAME_1, GuiPanels.BLOCK_1_FRAME_2, GuiPanels.BLOCK_1_FRAME_3, false);
         createPanelLine(GuiPanels.TOP_LEFT_CENTER_MAIN_PANEL, GuiPanels.BLOCK_1_FRAME_4, GuiPanels.BLOCK_1_FRAME_5, GuiPanels.BLOCK_1_FRAME_6, false);
@@ -131,10 +132,10 @@ public class GuiGamePanel extends JPanel implements PropertyChangeListener{
 
     private void initializeButton(JButton button){
         button.addActionListener(e -> {
-            if (e.getActionCommand().equals("Button")){
+            if (e.getActionCommand().equals("Compare Solutions")){
                 try {
                     setSolutions(GuiPanels.ALL_BLOCKS_ARRAY_TEXT);
-                    berechnungsAlgorithmusCore.compareSolutions(getSolutions());
+                    BerechnungsAlgorithmusCore.compareSolutions(getSolutions(), Reference.LEVEL);
                 }catch (Exception ex){
                     LogHelper.fatal("Exception during operation " + ex.getMessage());
                     ex.printStackTrace();
